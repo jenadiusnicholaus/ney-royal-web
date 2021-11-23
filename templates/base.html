@@ -61,8 +61,8 @@
             <div id="header1" class="header1-area">
                 <div class="main-menu-area bg-primary" id="sticker">
                     <div class="container">
-
                         <div class="row">
+
                             <div class="col-lg-2 col-md-3">
                                 <div class="logo-area">
                                     <a href=""><img class="img-responsive" src="{% static 'img/banner.jpg' %}" alt="logo"></a>
@@ -90,7 +90,12 @@
 
                                             </ul>
                                         </li>
-                                        <li><a href="{% url 'course'%}">Courses</a>
+                                        <li><a href="#">Courses</a>
+                                            <ul>
+
+                                                <li class="has-child-menu"><a href="{% url 'course'%}"> New Course list</a>
+                                                </li>
+                                            </ul>
 
                                         </li>
                                         <li><a href="{% url 'about_us'%}">About</a>
