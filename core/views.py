@@ -8,3 +8,31 @@ def home(request):
 
     }
     return render(request, 'homepage.html', context=context)
+
+
+def course(request):
+    context = {
+
+    }
+    return render(request, 'course.html', context=context)
+
+
+def about_us(request):
+    context = {
+
+    }
+    return render(request, 'about_us.html', context=context)
+
+
+def contact_us(request):
+    context = {
+
+    }
+    return render(request, 'contact_us.html', context=context)
+
+
+def events(request):
+    context = {
+
+    }
+    return render(request, 'events.html', context=context)
