@@ -62,7 +62,7 @@
             <div id="header1" class="header1-area">
                 <div class='navbar top-fixed bg-faded' style="height: 130px; padding:0; ">
                     <img style="height:130px; width:100%; object-fit:fill; flex: 1" class="img-responsive"
-                        src="{% static 'img/banner.jpg' %}" alt="banner">
+                        src="{% static 'img/banner1.jpg' %}" alt="banner">
                 </div>
                 <div class="main-menu-area bg-primary" id="sticker" >
 
@@ -125,7 +125,7 @@
                             </div>
                             <div class="col-lg-2 d-none d-lg-block">
                                 <div class="apply-btn-area">
-                                    <a href="#" class="apply-now-btn">Apply Now</a>
+                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="apply-now-btn">Apply Now</a>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
             <!-- Mobile Menu Area Start -->
             <div class="mobile-menu-area">
                 <div class="container">
-                    <img class="img-responsive" src="{% static 'img/banner.jpg' %}" alt="logo">
+                    <img class="img-responsive" src="{% static 'img/banner1.jpg' %}" alt="logo">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="mobile-menu">
@@ -354,6 +354,27 @@
     <script src="{%static 'js/jquery.gridrotator.js'%}" type="text/javascript"></script>
     <!-- Custom Js -->
     <script src="{%static 'js/main.js'%}" type="text/javascript"></script>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   I wanted to here from you, Which information do we neeed from the user
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         $(window).scroll(function ()
