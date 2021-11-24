@@ -1890,6 +1890,7 @@ h2.sidebar-title:before {
 [03] Header Area
 =========================================================================*/
 .main-menu-area {
+  background-color: #05e42a;
   left: 0;
   right: 0;
   margin: 0 auto;
