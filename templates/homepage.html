@@ -21,9 +21,18 @@
                                 industry's standard
                                 <br>dummy text ever sinceprinting and typesetting industry.
                             </p>
+                            {% if request.user.is_authenticated%}
                             <div class="slider-btn-area">
-                                <a href="#" class="default-big-btn">Start a Course</a>
+                                <a href="#" data-toggle="modal" data-target="#applyCourseModal" class="default-big-btn">Start a
+                                    Course</a>
                             </div>
+                            {% else%}
+                            <div class="slider-btn-area">
+                                <a href="#" data-toggle="modal"  data-target="#LoginModal"
+                                    class="default-big-btn">Start a
+                                    Course</a>
+                            </div>
+                            {% endif%}
                         </div>
                     </div>
                 </div>
@@ -36,9 +45,17 @@
                                 industry's standard
                                 <br>dummy text ever sinceprinting and typesetting industry.
                             </p>
+                            {% if request.user.is_authenticated%}
                             <div class="slider-btn-area">
-                                <a href="#" class="default-big-btn">Start a Course</a>
+                                <a href="#" data-toggle="modal"  data-target="#applyCourseModal" class="default-big-btn">Start a Course</a>
                             </div>
+                            {% else%}
+                            <div class="slider-btn-area">
+                                <a href="#" data-toggle="modal"  data-target="#LoginModal" class="default-big-btn">Start a
+                                    Course</a>
+                            </div>
+                            {% endif%}
+
                         </div>
                     </div>
                 </div>
@@ -51,9 +68,18 @@
                                 industry's standard
                                 <br>dummy text ever sinceprinting and typesetting industry.
                             </p>
+                            {% if request.user.is_authenticated%}
                             <div class="slider-btn-area">
-                                <a href="#" class="default-big-btn">Start a Course</a>
+                                <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#applyCourseModal" class="default-big-btn">Start a
+                                    Course</a>
                             </div>
+                            {% else%}
+                            <div class="slider-btn-area">
+                                <a href="#" data-toggle="modal"  data-target="#LoginModal"
+                                    class="default-big-btn">Start a
+                                    Course</a>
+                            </div>
+                            {% endif%}
                         </div>
                     </div>
                 </div>
@@ -129,7 +155,7 @@
                                 <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
                             </div>
                             <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="{% url 'course_details'%}">Urembo</a></h3>
+                                <h3 class="item-title"><a href="{% url 'course_details'%}Fsta">Urembo</a></h3>
                                 <p class="item-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                                 <ul class="courses-info">
                                     <li>1 Year
@@ -560,6 +586,41 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="applyCourseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="{% url 'user_register'%}" method="post">
+                        {% csrf_token %}
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <select class="form-control" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                            <button data-toggle="modal" data-dismiss="modal" data-target="#registerModal" type="button"
+                                class="btn btn-default">Register</button>
+
+                            <button type="submit" onclick=spinner() ata-dismiss="modal" class="btn btn-warning">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

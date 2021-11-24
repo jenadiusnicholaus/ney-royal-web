@@ -55,7 +55,7 @@
     <!-- Main Body Area Start Here -->
     <div id="wrapper">
         <!-- Header Area Start Here -->
-        <header>
+        <header >
             <div id="header1" class="header1-area">
                     <img style="height:120px; width:100%; object-fit:fill; flex: 1" class="img-responsive"
                         src="{% static 'img/banner1.jpg' %}" alt="banner">
@@ -142,7 +142,7 @@
                                 {%else%}
 
                                 <div class="apply-btn-area">
-                                    <a href="#" data-toggle="modal" data-target="#applyModal" class="apply-now-btn">Log In</a>
+                                    <a href="#" data-toggle="modal" data-target="#LoginModal" class="apply-now-btn">Log In</a>
                                 </div>
 
                                 {%endif%}
@@ -321,14 +321,14 @@
     <!-- Custom Js -->
     <script src="{%static 'js/main.js'%}" type="text/javascript"></script>
 
-    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <form action="{% url 'login'%}" method="post">
                     {% csrf_token %}
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Login Now to continue</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -353,7 +353,7 @@
 
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                        <button type="button" class="btn btn-default">Register</button>
+                        <button data-toggle="modal" data-dismiss="modal" data-target="#registerModal" type="button" class="btn btn-default">Register</button>
 
                         <button type="submit" onclick=spinner() ata-dismiss="modal" class="btn btn-warning">Submit</button>
                     </div>
@@ -384,6 +384,57 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="{% url 'user_register'%}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" placeholder="Enater Username" class="form-control" name="username" id="username"
+                                data-error="Username field is required" required="">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Enter Email" class="form-control" name="email" id="email"
+                                data-error="Email field is required" required="">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Enter Password" class="form-control" name="password1" id="password1"
+                                data-error="Email field is required" required="">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder=" Confirm Password" class="form-control" name="password2" id="password2"
+                                data-error="Email field is required" required="">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        <button data-toggle="modal" data-dismiss="modal" data-target="#registerModal" type="button"
+                            class="btn btn-default">Register</button>
+
+                        <button type="submit" onclick=spinner() ata-dismiss="modal" class="btn btn-warning">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <script>
          function spinner()
