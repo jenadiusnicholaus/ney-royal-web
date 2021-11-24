@@ -36,3 +36,17 @@ def events(request):
 
     }
     return render(request, 'events.html', context=context)
+
+
+def course_details(request):
+    context = {
+
+    }
+    return render(request, 'course_details.html', context=context)
+
+
+def event_details(request):
+    context = {
+
+    }
+    return render(request, 'event_details.html', context=context)
