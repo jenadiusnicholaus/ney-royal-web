@@ -48,11 +48,8 @@
         <![endif]-->
     <!-- Add your site or application content here -->
     <!-- Preloader Start Here -->
-    <div id="preloader" style="  background:transparent url('/static/img/loading.gif') no-repeat scroll center center;
-">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+    <div id="preloader" style="  background:transparent url('/static/img/loading.gif') no-repeat scroll center center;">
+
     </div>
     <!-- Preloader End Here -->
     <!-- Main Body Area Start Here -->
@@ -73,6 +70,21 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-9">
+                                {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                    {% if message.tags %}
+                                    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                                        {% endif %}
+                                        <strong>Done!</strong> {{ message }}..
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                    </div>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
                                 <nav  id="desktop-nav"  >
                                     <ul>
                                         <li class="active"><a href="{% url 'home' %}">Home</a>
@@ -123,9 +135,17 @@
                                 </nav>
                             </div>
                             <div class="col-lg-2 d-none d-lg-block">
+                                {% if request.user.is_authenticated%}
                                 <div class="apply-btn-area">
-                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="apply-now-btn">Apply Now</a>
+                                    <a href="#"  data-toggle="modal" data-target="#logoutModal" class="apply-now-btn">Log Out</a>
                                 </div>
+                                {%else%}
+
+                                <div class="apply-btn-area">
+                                    <a href="#" data-toggle="modal" data-target="#applyModal" class="apply-now-btn">Log In</a>
+                                </div>
+
+                                {%endif%}
                             </div>
                         </div>
                     </div>
@@ -301,41 +321,78 @@
     <!-- Custom Js -->
     <script src="{%static 'js/main.js'%}" type="text/javascript"></script>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
+                <form action="{% url 'login'%}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                            <div class="form-group">
+                                <input type="text" placeholder="username" class="form-control" name="username" id="username"
+                                    data-error="Username field is required" required="">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" placeholder="Password" class="form-control" name="password" id="password"
+                                    data-error="Email field is required" required="">
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        <button type="button" class="btn btn-default">Register</button>
+
+                        <button type="submit" onclick=spinner() ata-dismiss="modal" class="btn btn-warning">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Log Out</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                   I wanted to here from you, Which information do we neeed from the user
+                   <h5 style="color: red;">Are sure you want to log out?</h5>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-warning">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a href="{% url 'user_logout'%}" class="btn btn-danger">Yes</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <script>
-        $(window).scroll(function ()
+    <script>
+         function spinner()
             {
-                if ($(window).scrollTop() == 0)
-                {
-                    $(".navbar").removeClass("fixed-top");
-                } else
-                {
-                    $(".navbar").addClass("fixed-top");
-                }
-            });
+                document.getElementsByClassName("#loginloader")[0].style.display = "block" ;
+            }
 
+    </script>
 
-    </script> -->
 </body>
 
 </html>
