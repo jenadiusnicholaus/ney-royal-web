@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 
 
-from core.models import Course
+from core.models import AppliedCourse, Course
 
 # Create your views here.
 
@@ -62,3 +62,17 @@ def event_details(request):
 
     }
     return render(request, 'event_details.html', context=context)
+
+
+def appy_course(request):
+    if request.method == 'POST':
+        course_id = request.POST.get('course_id')
+
+        course = Course.objects.get(pk=course_id)
+        applied_course, created = AppliedCourse.objects.get_or_create(
+            student=request.user, course=course)
+
+        print(applied_course)
+        print(course.id)
+        # messages.success(request, 'you')
+        return redirect('/')

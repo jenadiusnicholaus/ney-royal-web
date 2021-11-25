@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models import Course
+from core.models import *
 
 
 class CourseAdmin(admin.ModelAdmin):
@@ -10,3 +10,5 @@ class CourseAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Course, CourseAdmin)
+admin.site.register(AppliedCourse)
+admin.site.register(Applications)

@@ -160,7 +160,7 @@
                                 <p class="item-content">{{course.description|truncatechars:60}}</p>
                                 <ul class="courses-info">
 
-                                    <li>{{course.created_on|timesince}}
+                                    <li>{{course.created_on|timesince}} ago
 
                                     </li>
                                     <a class="btn btn-warning courses-fee" href="#">Apply</a>
@@ -459,7 +459,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="{% url 'user_register'%}" method="post">
+                    <form action="{% url 'appy_course'%}" method="post">
                         {% csrf_token %}
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
@@ -468,11 +468,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <select class="form-control" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select name="course_id" class="form-control" aria-label="Default select example">
+                                <option selected>Select a course to apply to</option>
+                                {%for course in courses %}
+                                <option value="{{course.id}}">{{course.title}}</option>
+                                {% endfor %}
+
                             </select>
 
                         </div>

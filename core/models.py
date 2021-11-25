@@ -24,3 +24,38 @@ class Course(models.Model):
 
     def get_absolute_url(self):
         return Reversible("course_detail", kwargs={"pk": self.pk})
+
+
+class AppliedCourse(models.Model):
+    student = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    course = models.ForeignKey(
+        Course, on_delete=models.SET_NULL, null=True)
+    created_on = models.DateTimeField(default=timezone.now)
+    updated_on = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = "Applied course"
+        verbose_name_plural = "Applied courses"
+
+    def __str__(self):
+        return self.course.title
+
+    def get_absolute_url(self):
+        return Reversible("course_detail", kwargs={"pk": self.course.pk})
+
+
+class Applications(models.Model):
+    student = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    courses = models.ManyToManyField(AppliedCourse)
+    created_on = models.DateTimeField(default=timezone.now)
+    updated_on = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = "applications"
+        verbose_name_plural = "Applicants"
+
+    def __str__(self):
+        return self.student.username
+
+    def get_absolute_url(self):
+        return Reversible("course_detail", kwargs={"pk": self.course.pk})
