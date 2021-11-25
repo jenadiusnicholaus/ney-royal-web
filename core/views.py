@@ -4,15 +4,17 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 
 
-from core.models import Applications, AppliedCourse, Course
-
+from core.models import *
 # Create your views here.
 
 
 def home(request):
+    events = Events.objects.all()[:2]
+
     courses = Course.objects.all()
     context = {
-        'courses': courses
+        'courses': courses,
+        'events': events
 
     }
     return render(request, 'homepage.html', context=context)
@@ -46,7 +48,12 @@ def contact_us(request):
 
 
 def events(request):
+    events = Events.objects.all()
+    paginator = Paginator(events, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
+        'events': page_obj
 
     }
     return render(request, 'events.html', context=context)
@@ -60,7 +67,12 @@ def course_details(request):
 
 
 def event_details(request):
+    events = Events.objects.all()
+    paginator = Paginator(events, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
+        'events': page_obj
 
     }
     return render(request, 'event_details.html', context=context)

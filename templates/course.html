@@ -27,7 +27,23 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <div class="courses-page-top-area">
                                 <div class="courses-page-top-left">
-                                    <p>Showing 13-24 of 50 results</p>
+                                    <div class="pagination">
+                                        <span class="step-links">
+                                            {% if courses.has_previous %}
+                                            <a href="?page=1">&laquo; first</a>
+                                            <a href="?page={{ courses.previous_page_number }}">previous</a>
+                                            {% endif %}
+
+                                            <span class="current">
+                                                Page {{ courses.number }} of {{ courses.paginator.num_pages }}.
+                                            </span>
+
+                                            {% if courses.has_next %}
+                                            <a href="?page={{ courses.next_page_number }}">next</a>
+                                            <a href="?page={{ courses.paginator.num_pages }}">last &raquo;</a>
+                                            {% endif %}
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="courses-page-top-right">
                                     <ul class="nav" role="tablist">
@@ -335,15 +351,15 @@
                                     </span>
 
                                     {% if courses.has_next %}
-                                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                    <a href="?page={{ courses.next_page_number }}">next</a>
+                                    <a href="?page={{ courses.paginator.num_pages }}">last &raquo;</a>
                                     {% endif %}
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 order-md-1">
+               <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 order-md-1">
                     <div class="sidebar">
                         <div class="sidebar-box">
                             <div class="sidebar-box-inner">
@@ -371,10 +387,10 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group remember-style">
+                                        <!-- <div class="form-group remember-style">
                                             <span><input name="remember" type="checkbox">FREE</span>
                                             <span><input name="remember" type="checkbox">PAID</span>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <button class="sidebar-search-btn disabled" type="submit" value="Login">Search
                                                 Course</button>
@@ -383,7 +399,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar-box">
+                        <!-- <div class="sidebar-box">
                             <div class="sidebar-box-inner">
                                 <h3 class="sidebar-title">Class Categories</h3>
                                 <ul class="sidebar-categories">
@@ -397,8 +413,8 @@
                                     <li><a href="#">Graphic Design</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="sidebar-box">
+                        </div> -->
+                        <!-- <div class="sidebar-box">
                             <div class="sidebar-box-inner">
                                 <h3 class="sidebar-title">Search By Price</h3>
                                 <div id="price-range-wrapper" class="price-range-wrapper">
@@ -411,13 +427,13 @@
                                         value="Login">Search</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sidebar-box">
+                        </div> -->
+                        <!-- <div class="sidebar-box">
                             <div class="sidebar-add-area overlay-primaryColor">
                                 <img src="img/banner/7.jpg" class="img-responsive" alt="banner">
                                 <a href="#" class="sidebar-ghost-btn">Apply Now!</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

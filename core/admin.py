@@ -12,3 +12,4 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Course, CourseAdmin)
 admin.site.register(AppliedCourse)
 admin.site.register(Applications)
+admin.site.register(Events)

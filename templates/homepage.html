@@ -152,7 +152,7 @@
                     <div class="courses-box1">
                         <div class="single-item-wrapper">
                             <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{{course.image.url}}" alt="courses">
+                                <img style="width: 300px; height:200px; object-fit:fill;" class="img-responsive" src="{{course.image.url}}" alt="courses">
                                 <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
                             </div>
                             <div class="courses-content-wrapper">
@@ -164,8 +164,6 @@
 
                                     </li>
                                     <a class="btn btn-warning courses-fee" href="#">Apply</a>
-
-
 
                                 </ul>
 
@@ -240,47 +238,29 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 event-inner-area">
                         <h2 class="title-default-left">Upcoming Events</h2>
                         <ul class="event-wrapper">
-                            <li class="wow bounceInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                                <div class="event-calender-wrapper">
-                                    <div class="event-calender-holder">
-                                        <h3>26</h3>
-                                        <p>Jan</p>
-                                        <span>2017</span>
+                            {%for event in events %}
+                                <li class="wow bounceInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                                    <div class="event-calender-wrapper">
+                                        <div class="event-calender-holder">
+                                            <h3>{{event.held_on|date:'d'}}</h3>
+                                            <p>{{event.held_on|date:'M'}}</p>
+                                            <span>{{event.held_on|date:'Y'}}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="event-content-holder">
-                                    <h3><a href="single-event.html">Html MeetUp Conference 2017</a></h3>
-                                    <p>Pellentese turpis dignissim amet area ducation process facilitating Knowledge.
-                                        Pellentese turpis dignissim amet area ducation process facilitating Knowledge.
-                                        Pellentese turpis dignissim amet area ducation.</p>
-                                    <ul>
-                                        <li>04:00 PM - 06:00 PM</li>
-                                        <li>Australia , Melborn</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="wow bounceInUp" data-wow-duration="2s" data-wow-delay=".3s">
-                                <div class="event-calender-wrapper">
-                                    <div class="event-calender-holder">
-                                        <h3>26</h3>
-                                        <p>Jan</p>
-                                        <span>2017</span>
+                                    <div class="event-content-holder">
+                                        <h3><a href="single-event.html">{{event.title|truncatechars:100}}</a></h3>
+                                        <p>{{event.description}}</p>
+                                        <ul>
+                                            <li>{{event.held_on}}</li>
+                                            <li>{{event.adress}}</li>
+                                        </ul>
                                     </div>
-                                </div>
-                                <div class="event-content-holder">
-                                    <h3><a href="single-event.html">Workshop On UI Design</a></h3>
-                                    <p>Pellentese turpis dignissim amet area ducation process facilitating Knowledge.
-                                        Pellentese turpis dignissim amet area ducation process facilitating Knowledge.
-                                        Pellentese turpis dignissim amet area ducation.</p>
-                                    <ul>
-                                        <li>03:00 PM - 05:00 PM</li>
-                                        <li>Australia , Melborn</li>
-                                    </ul>
-                                </div>
-                            </li>
+                                </li>
+                            {%endfor%}
+
                         </ul>
                         <div class="event-btn-holder">
-                            <a href="#" class="view-all-primary-btn">View All</a>
+                            <a href="{% url 'events'%}" class="view-all-primary-btn">View All</a>
                         </div>
                     </div>
                 </div>
