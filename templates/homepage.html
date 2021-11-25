@@ -148,167 +148,32 @@
                     data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2"
                     data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true"
                     data-r-medium-dots="false" data-r-large="4" data-r-large-nav="true" data-r-large-dots="false">
+                    {%for course in courses %}
                     <div class="courses-box1">
                         <div class="single-item-wrapper">
                             <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{% static 'img/img.jpg'%}" alt="courses">
+                                <img class="img-responsive" src="{{course.image.url}}" alt="courses">
                                 <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
                             </div>
                             <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="{% url 'course_details'%}Fsta">Urembo</a></h3>
-                                <p class="item-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <h3 class="item-title"><a href="{% url 'course_details'%}">{{course.title}}</a></h3>
+                                <p class="item-content">{{course.description|truncatechars:60}}</p>
                                 <ul class="courses-info">
-                                    <li>1 Year
-                                        <br><span> Course</span>
+
+                                    <li>{{course.created_on|timesince}}
+
                                     </li>
-                                    <li>40
-                                        <br><span> Classes</span>
-                                    </li>
-                                    <li>10 am - 11 am
-                                        <br><span> Classes</span>
-                                    </li>
+                                    <a class="btn btn-warning courses-fee" href="#">Apply</a>
+
+
+
                                 </ul>
+
                             </div>
                         </div>
                     </div>
-                    <div class="courses-box1">
-                        <div class="single-item-wrapper">
-                            <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{% static 'img/img1.jpg'%}" alt="courses">
-                                <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="#">Mapambo</a></h3>
-                                <p class="item-content">Rmply dummy text printing setting industry it’s free demo.</p>
-                                <ul class="courses-info">
-                                    <li>3 Months
-                                        <br><span> Course</span>
-                                    </li>
-                                    <li>30
-                                        <br><span> Classes</span>
-                                    </li>
-                                    <li>10 am - 11 am
-                                        <br><span> Classes</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-box1">
-                        <div class="single-item-wrapper">
-                            <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{% static 'img/img1.jpg'%}" alt="courses">
-                                <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="#">Ususi</a></h3>
-                                <p class="item-content">Rmply dummy text printing setting industry it’s free demo.</p>
-                                <ul class="courses-info">
-                                    <li>2 Months
-                                        <br><span> Course</span>
-                                    </li>
-                                    <li>24
-                                        <br><span> Classes</span>
-                                    </li>
-                                    <li>10 am - 11 am
-                                        <br><span> Classes</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-box1">
-                        <div class="single-item-wrapper">
-                            <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{% static 'img/img2.jpg'%}" alt="courses">
-                                <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="#">Upambaji wa kumbi</a></h3>
-                                <p class="item-content">Rmply dummy text printing setting industry it’s free demo.</p>
-                                <ul class="courses-info">
-                                    <li>1 Year
-                                        <br><span> Course</span>
-                                    </li>
-                                    <li>50
-                                        <br><span> Classes</span>
-                                    </li>
-                                    <li>10 am - 11 am
-                                        <br><span> Time</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-box1">
-                        <div class="single-item-wrapper">
-                            <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{% static 'img/img3.jpg'%}" alt="courses">
-                                <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="#">Upishi</a></h3>
-                                <p class="item-content">Rmply dummy text printing setting industry it’s free demo.</p>
-                                <ul class="courses-info">
-                                    <li>1 Year
-                                        <br><span> Course</span>
-                                    </li>
-                                    <li>40
-                                        <br><span> Classes</span>
-                                    </li>
-                                    <li>10 am - 11 am
-                                        <br><span> Time</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-box1">
-                        <div class="single-item-wrapper">
-                            <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{% static 'img/img4.jpg'%}" alt="courses">
-                                <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="#">Ushonaji</a></h3>
-                                <p class="item-content">Rmply dummy text printing setting industry it’s free demo.</p>
-                                <ul class="courses-info">
-                                    <li>3 Months
-                                        <br><span> Course</span>
-                                    </li>
-                                    <li>30
-                                        <br><span> Classes</span>
-                                    </li>
-                                    <li>10 am - 11 am
-                                        <br><span> Time</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-box1">
-                        <div class="single-item-wrapper">
-                            <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                <img class="img-responsive" src="{% static 'img/img4.jpg'%}" alt="courses">
-                                <a href="single-courses1.html"><i class="fa fa-link" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="courses-content-wrapper">
-                                <h3 class="item-title"><a href="#">Ufumaji</a></h3>
-                                <p class="item-content">Rmply dummy text printing setting industry it’s free demo.</p>
-                                <ul class="courses-info">
-                                    <li>1 Year
-                                        <br><span> Course</span>
-                                    </li>
-                                    <li>50
-                                        <br><span> Classes</span>
-                                    </li>
-                                    <li>10 am - 11 am
-                                        <br><span> Time</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    {%endfor%}
+
                 </div>
             </div>
         </div>

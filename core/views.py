@@ -1,17 +1,29 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
+
+
+from core.models import Course
 
 # Create your views here.
 
 
 def home(request):
+    courses = Course.objects.all()
     context = {
+        'courses': courses
 
     }
     return render(request, 'homepage.html', context=context)
 
 
 def course(request):
+    courses = Course.objects.all()
+    paginator = Paginator(courses, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
+        'courses': page_obj
 
     }
     return render(request, 'course.html', context=context)
