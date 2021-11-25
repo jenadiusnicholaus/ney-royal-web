@@ -1,8 +1,10 @@
+
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 
 
-from core.models import AppliedCourse, Course
+from core.models import Applications, AppliedCourse, Course
 
 # Create your views here.
 
@@ -71,8 +73,24 @@ def appy_course(request):
         course = Course.objects.get(pk=course_id)
         applied_course, created = AppliedCourse.objects.get_or_create(
             student=request.user, course=course)
+        application_qs = Applications.objects.filter(
+            student=request.user)
+        if application_qs.exists():
+            application = application_qs[0]
+            if application.courses.filter(course__pk=course_id).exists:
+                messages.success(
+                    request, f'You alread applied for this {course.title}')
 
-        print(applied_course)
-        print(course.id)
-        # messages.success(request, 'you')
+                return redirect('/')
+            else:
+                application.courses.add(applied_course)
+                messages.success(request, 'applacation added successifully')
+                return redirect('/')
+        else:
+            application = Applications.objects.create(
+                student=request.user, )
+            application.courses.add(applied_course)
+            messages.success(request, 'applacation added successifully')
+
+            return redirect('/')
         return redirect('/')
