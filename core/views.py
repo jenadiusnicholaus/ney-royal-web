@@ -69,6 +69,7 @@ def event_details(request):
 def appy_course(request):
     if request.method == 'POST':
         course_id = request.POST.get('course_id')
+        print(course_id)
 
         course = Course.objects.get(pk=course_id)
         applied_course, created = AppliedCourse.objects.get_or_create(
@@ -77,10 +78,10 @@ def appy_course(request):
             student=request.user)
         if application_qs.exists():
             application = application_qs[0]
-            if application.courses.filter(course__pk=course_id).exists:
+            if application.courses.filter(course__pk=course.pk).exists():
+                applied_course.save()
                 messages.success(
                     request, f'You alread applied for this {course.title}')
-
                 return redirect('/')
             else:
                 application.courses.add(applied_course)
