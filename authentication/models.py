@@ -12,7 +12,6 @@ class UserProfile(models.Model):
         User, on_delete=models.CASCADE)
     mobile = models.CharField(max_length=15, null=True, blank=True)
     location = models.CharField(max_length=20, null=True)
-    bio = models.TextField(max_length=300, null=True, blank=True)
     region = models.CharField(max_length=15, null=True, blank=True)
     district = models.CharField(max_length=15, null=True, blank=True)
     ward = models.CharField(max_length=15, null=True, blank=True)

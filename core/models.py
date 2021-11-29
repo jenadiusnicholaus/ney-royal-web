@@ -47,6 +47,7 @@ class AppliedCourse(models.Model):
 class Applications(models.Model):
     student = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     courses = models.ManyToManyField(AppliedCourse)
+    file = models.FileField(upload_to='application_files', null=True)
     created_on = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(default=timezone.now)
 

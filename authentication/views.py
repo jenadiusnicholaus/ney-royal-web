@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm, UsernameField  # add this
 from django.contrib.auth import login as user_login, authenticate, logout  # add this
 from django.contrib import messages
-from authentication.frorms import NewUserForm
+from authentication.forms import NewUserForm
 
 
 # Create your views here.

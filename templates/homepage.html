@@ -439,7 +439,8 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="{% url 'appy_course'%}" method="post">
+                    {%if application_course_counter < 0 and application.file is None %}
+                    <form action="{% url 'appy_course'%}" method="post" enctype ="multipart/form-data">
                         {% csrf_token %}
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">Apply Now</h5>
@@ -448,6 +449,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
+
+                            <!-- {{application_form.as_p}} -->
                             <select name="course_id" class="form-control" aria-label="Default select example">
                                 <option selected>Select a course to apply to</option>
                                 {%for course in courses %}
@@ -455,16 +458,19 @@
                                 {% endfor %}
 
                             </select>
-
+                            <div class="form-group mt-3">
+                                <label for="cover_letter">Upload you cover letter</label>
+                                <input type="file" name="cover_letter" class="form-control-file" id="cover_letter">
+                            </div>
                         </div>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-
                             <button type="submit" onclick=spinner() ata-dismiss="modal" class="btn btn-warning">Apply</button>
                         </div>
                     </form>
+                    {%else%}
+                    <a href = "{%url 'update_application'%}" class ="btn btn-warning">Update your application</a>
+                    {%endif%}
                 </div>
             </div>
         </div>
