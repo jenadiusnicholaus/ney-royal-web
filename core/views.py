@@ -14,21 +14,30 @@ from core.models import *
 def home(request):
     events = Events.objects.all()[:2]
     form = ApllicationForm()
-    application_qs = Applications.objects.filter(student=request.user)
-    application = None
-    if application_qs.exists():
-        application = application_qs[0]
+    if request.user.is_authenticated:
+        application_qs = Applications.objects.filter(student=request.user)
+        application = None
+        if application_qs.exists():
+            application = application_qs[0]
 
-    print(application.courses.count())
-    courses = Course.objects.all()
-    context = {
-        'courses': courses,
-        'events': events,
-        'application_form': form,
-        'application_course_counter': application.courses.count()
+        print(application.courses.count())
+        courses = Course.objects.all()
+        context = {
+            'courses': courses,
+            'events': events,
+            'application_form': form,
+            'application_course_counter': application.courses.count()
 
-    }
-    return render(request, 'homepage.html', context=context)
+        }
+        return render(request, 'homepage.html', context=context)
+    else:
+        courses = Course.objects.all()
+        context = {
+            'courses': courses,
+            'events': events,
+            'application_form': form,
+        }
+        return render(request, 'homepage.html', context=context)
 
 
 class UpdateAppliction(View):
