@@ -6,8 +6,11 @@ register = template.Library()
 
 @register.simple_tag
 def isApplied(course_id, user):
-
-    if AppliedCourse.objects.filter(course__pk=course_id, student=user).exists():
-        return True
+    if user.is_authenticated:
+        if AppliedCourse.objects.filter(course__pk=course_id, student=user).exists():
+            return True
+        else:
+            return False
     else:
-        return False
+
+        return None

@@ -168,7 +168,7 @@
                                         {% csrf_token %}
                                         <input hidden type="text" name = 'course_id' value = {{course.id}}>
                                         {% isApplied course.id request.user as is_applied %}
-                                        {%if is_applied %}
+                                        {%if is_applied and request.user.is_authenticated %}
 
                                         <button type ="button"  class="btn btn-warning courses-fee" >You applied this course <i style ="background-color: green; border-radius:100%; width: 20px; height: 20px; color:white;" class="fa fa-check" ></i></button>
                                         {%else%}

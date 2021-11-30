@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load course_tags %}
+
 
 {% block contents %}
         <!-- <img style="height:110px; width: 100%;" src="{% static 'img/banner.jpg'%}" alt=""> -->
@@ -326,7 +328,20 @@
                                                         <br><span> Time</span>
                                                     </li>
                                                 </ul>
-                                                <a class="btn btn-warning courses-fee" href="#">Apply</a>
+                                                <form action="{% url 'appy_course' %}" method="POST">
+                                                    {% csrf_token %}
+                                                    <input hidden type="text" name='course_id' value={{course.id}}>
+                                                    {% isApplied course.id request.user as is_applied %}
+                                                    {%if is_applied and request.user.is_authenticated %}
+
+                                                    <a type="button" class="btn btn-warning ">YouApplied for this course <i
+                                                            style="background-color: green; border-radius:100%; width: 20px; height: 20px; color:white;"
+                                                            class="fa fa-check"></i></a>
+                                                    {%else%}
+                                                    <button type="submit" class="btn btn-warning courses-fee">Apply</button>
+                                                    {%endif%}
+
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
