@@ -42,25 +42,29 @@ def home(request):
 
 class UpdateAppliction(View):
     def get(self, request, *kwargs, **kargs):
-        application_form = ApllicationForm(instance=request.user)
-        update_form_user = usersForm(instance=request.user)
-        update_form_user_profile = UserProfileForm(
-            instance=request.user.userprofile)
-        user_application = Applications.objects.filter(student=request.user)
-        user_ap = None
+        if request.user.is_authenticated:
+            application_form = ApllicationForm(instance=request.user)
+            update_form_user = usersForm(instance=request.user)
+            update_form_user_profile = UserProfileForm(
+                instance=request.user.userprofile)
+            user_application = Applications.objects.filter(
+                student=request.user)
+            user_ap = None
 
-        if user_application.exists():
-            user_ap = user_application[0]
+            if user_application.exists():
+                user_ap = user_application[0]
 
-        context = {
-            'application': user_ap,
-            'a_form': application_form,
-            'user_appliction': user_application,
-            'user_form': update_form_user,
-            'profile_form': update_form_user_profile
-        }
-
-        return render(request, 'update_application.html', context=context)
+            context = {
+                'application': user_ap,
+                'a_form': application_form,
+                'user_appliction': user_application,
+                'user_form': update_form_user,
+                'profile_form': update_form_user_profile
+            }
+            return render(request, 'update_application.html', context=context)
+        messages.warning(
+            self.request, 'Login to continue')
+        return redirect("/")
 
     def post(self, request, *kwargs, **kargs):
 
@@ -144,39 +148,43 @@ def event_details(request):
 
 
 def appy_course(request):
-    if request.method == 'POST':
-        course_id = request.POST.get('course_id')
-        coverlatter = request.FILES['cover_letter']
-        print(course_id)
-        print(coverlatter)
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            course_id = request.POST.get('course_id')
+            coverlatter = None
+            if request.FILES.get('cover_letter') is not None:
+                coverlatter = request.FILES.get('cover_letter')
 
-        course = Course.objects.get(pk=course_id)
-        applied_course, created = AppliedCourse.objects.get_or_create(
-            student=request.user, course=course)
-        application_qs = Applications.objects.filter(
-            student=request.user)
-        if application_qs.exists():
-            application = application_qs[0]
-            if application.courses.filter(course__pk=course.pk).exists():
-                applied_course.save()
-                if application.file is None:
-                    application.file = coverlatter
-                    application.save()
+            course = Course.objects.get(pk=course_id)
+            applied_course, created = AppliedCourse.objects.get_or_create(
+                student=request.user, course=course)
+            application_qs = Applications.objects.filter(
+                student=request.user)
+            if application_qs.exists():
+                application = application_qs[0]
+                if application.courses.filter(course__pk=course.pk).exists():
+                    applied_course.save()
+                    if application.file is None:
+                        application.file = coverlatter
+                        application.save()
+                        messages.success(
+                            request, f'You alread applied for this {course.title} course but added a file')
+                        return redirect('/')
                     messages.success(
-                        request, f'You alread applied for this {course.title} course but added a file')
+                        request, f'You alread applied for this {course.title} course ')
                     return redirect('/')
-                messages.success(
-                    request, f'You alread applied for this {course.title} course ')
-                return redirect('/')
+                else:
+                    application.courses.add(applied_course)
+                    messages.success(
+                        request, 'application added successifully')
+                    return redirect('/')
             else:
+                application = Applications.objects.create(
+                    student=request.user, )
                 application.courses.add(applied_course)
                 messages.success(request, 'application added successifully')
-                return redirect('/')
-        else:
-            application = Applications.objects.create(
-                student=request.user, )
-            application.courses.add(applied_course)
-            messages.success(request, 'application added successifully')
 
-            return redirect('/')
         return redirect('/')
+    messages.warning(request, 'Login to continue')
+
+    return redirect('/')

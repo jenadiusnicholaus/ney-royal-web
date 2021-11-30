@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static%}
+{% load course_tags %}
+
 
 {% block contents %}
         <!-- Header Area End Here -->
@@ -23,14 +25,13 @@
                             </p>
                             {% if request.user.is_authenticated%}
                             <div class="slider-btn-area">
-                                <a href="#" data-toggle="modal" data-target="#applyCourseModal" class="default-big-btn">Start a
-                                    Course</a>
+                                <a href="#" data-toggle="modal" data-target="#applyCourseModal" class="default-big-btn">Apply
+                                </a>
                             </div>
                             {% else%}
                             <div class="slider-btn-area">
                                 <a href="#" data-toggle="modal"  data-target="#LoginModal"
-                                    class="default-big-btn">Start a
-                                    Course</a>
+                                    class="default-big-btn">Appliy</a>
                             </div>
                             {% endif%}
                         </div>
@@ -163,7 +164,20 @@
                                     <li>{{course.created_on|timesince}} ago
 
                                     </li>
-                                    <a class="btn btn-warning courses-fee" href="#">Apply</a>
+                                    <form action="{% url 'appy_course' %}" method = "POST" >
+                                        {% csrf_token %}
+                                        <input hidden type="text" name = 'course_id' value = {{course.id}}>
+                                        {% isApplied course.id request.user as is_applied %}
+                                        {%if is_applied %}
+
+                                        <button type ="button"  class="btn btn-warning courses-fee" >You applied this course <i style ="background-color: green; border-radius:100%; width: 20px; height: 20px; color:white;" class="fa fa-check" ></i></button>
+                                        {%else%}
+                                        <button type="submit" class="btn btn-warning courses-fee">Apply</button>
+                                        {%endif%}
+
+
+
+                                    </form>
 
                                 </ul>
 

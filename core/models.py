@@ -30,6 +30,7 @@ class AppliedCourse(models.Model):
     student = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     course = models.ForeignKey(
         Course, on_delete=models.SET_NULL, null=True)
+    is_applied = models.BooleanField(default=False)
     created_on = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(default=timezone.now)
 
