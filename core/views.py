@@ -43,9 +43,8 @@ def home(request):
 class UpdateAppliction(View):
     def get(self, request, *kwargs, **kargs):
         if request.user.is_authenticated:
-            application_form = ApllicationForm(instance=request.user)
-            update_form_user = usersForm(instance=request.user)
-            update_form_user_profile = UserProfileForm(
+            user_form = usersForm(instance=request.user)
+            user_profile_form = UserProfileForm(
                 instance=request.user.userprofile)
             user_application = Applications.objects.filter(
                 student=request.user)
@@ -56,10 +55,9 @@ class UpdateAppliction(View):
 
             context = {
                 'application': user_ap,
-                'a_form': application_form,
                 'user_appliction': user_application,
-                'user_form': update_form_user,
-                'profile_form': update_form_user_profile
+                'user_form': user_form,
+                'profile_form': user_profile_form
             }
             return render(request, 'update_application.html', context=context)
         messages.warning(
@@ -68,16 +66,16 @@ class UpdateAppliction(View):
 
     def post(self, request, *kwargs, **kargs):
 
-        update_form_user = usersForm(
-            self.request.POST or None,
+        user_form = usersForm(
+            self.request.POST,
             instance=self.request.user)
-        update_form_user_profile = UserProfileForm(
+        user_profile_form = UserProfileForm(
             self.request.POST or None, self.request.FILES or None,
             instance=self.request.user.userprofile)
-        if update_form_user.is_valid() and update_form_user_profile.is_valid():
+        if user_form.is_valid() and user_profile_form.is_valid():
 
-            user = update_form_user.save(True)
-            profile = update_form_user_profile.save(False)
+            user = user_form.save(True)
+            profile = user_profile_form.save(False)
             profile.user = user
             profile.save()
             messages.success(
@@ -85,7 +83,7 @@ class UpdateAppliction(View):
             return redirect('update_application')
         else:
             messages.warning(self.request, 'form is invalid')
-            print(update_form_user.data, update_form_user_profile.data)
+
             return redirect('update_application')
 
 

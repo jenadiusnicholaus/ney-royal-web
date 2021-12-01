@@ -21,48 +21,48 @@ class NewUserForm(forms.Form):
 
 class usersForm(forms.ModelForm):
     username = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+        'class': 'form-control',
         'placeholder': 'Write your username here...',
     }))
     email = forms.EmailField(required=False, widget=forms.EmailInput(attrs={
-        'class': 'form-control-plaintext',
+        'class': 'form-control',
         'placeholder': 'Write your email here...',
     }))
-    firstname = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
         'placeholder': 'Write your first name here...',
     }))
 
-    lastname = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
         'placeholder': 'Write your last name here...',
     }))
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'firstname', 'lastname')
+        fields = ('username', 'email', 'first_name', 'last_name')
 
 
 # user profile form
 class UserProfileForm(forms.ModelForm):
     location = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+        'class': 'form-control',
         'placeholder': 'Write your location here...',
     }))
     mobile = forms.CharField(label='Phone Number', required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+        'class': 'form-control',
         'placeholder': 'Write your Phoe number here...',
     }))
     region = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+        'class': 'form-control',
         'placeholder': 'Write your Region here...',
     }))
     district = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+        'class': 'form-control',
         'placeholder': 'Write your district here...',
     }))
     ward = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control-plaintext',
+        'class': 'form-control',
         'placeholder': 'Write your ward here...',
     }))
 
