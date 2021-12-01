@@ -69,7 +69,7 @@ class Events(models.Model):
     title = models.CharField(max_length=1000, null=True)
     description = models.TextField(null=True)
     held_on = models.DateTimeField(null=True)
-    adress = models.CharField(max_length=200, null=True)
+    address = models.CharField(max_length=200, null=True)
 
     class Meta:
         verbose_name = "Events"

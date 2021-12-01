@@ -262,11 +262,11 @@
                                         </div>
                                     </div>
                                     <div class="event-content-holder">
-                                        <h3><a href="single-event.html">{{event.title|truncatechars:100}}</a></h3>
+                                        <h3><a href="{% url 'event_details' event.id %}">{{event.title|truncatechars:100}}</a></h3>
                                         <p>{{event.description}}</p>
                                         <ul>
                                             <li>{{event.held_on}}</li>
-                                            <li>{{event.adress}}</li>
+                                            <li>{{event.address}}</li>
                                         </ul>
                                     </div>
                                 </li>

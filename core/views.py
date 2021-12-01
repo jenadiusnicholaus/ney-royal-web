@@ -136,13 +136,11 @@ def course_details(request, pk):
     return render(request, 'course_details.html', context=context)
 
 
-def event_details(request):
-    events = Events.objects.all()
-    paginator = Paginator(events, 10)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+def event_details(request, pk):
+    event = Events.objects.get(pk=pk)
+
     context = {
-        'events': page_obj
+        'event': event
 
     }
     return render(request, 'event_details.html', context=context)
