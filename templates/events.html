@@ -2,7 +2,7 @@
 {%load static %}
 {% block contents%}
 <br>
-<div class="inner-page-banner-area mt-5" style="background-image: url('/static/img/banner.jpg');">
+<div class="inner-page-banner-area mt-5" style="background-image: url('/static/img/banner1.jpg');">
     <div class="container">
         <div class="container mt-5">
             <div class="pagination-area mt-5">
@@ -30,7 +30,7 @@
                                 <a href="#"><img src="{{event.image.url}}" alt="event" class="img-responsive"></a>
                             </div>
                             <div class="item-content">
-                                <h3 class="sidebar-title"><a href="{% url 'event_details'%}">{{event.title|truncatechars:100}}</a></h3>
+                                <h3 class="sidebar-title"><a href="{% url 'event_details' event.id %}">{{event.title|truncatechars:100}}</a></h3>
                                 <p>{{event.description}}.</p>
                                 <ul class="event-info-block">
                                     <li><i class="fa fa-calendar" aria-hidden="true"></i>{{event.held_on|date:"M d, Y"}}</li>
