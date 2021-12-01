@@ -40,6 +40,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <!-- Modernizr Js -->
     <script src="{% static 'js/modernizr-2.8.3.min.js'%}"></script>
+
+
+
 </head>
 
 <body>
@@ -136,8 +139,24 @@
                             </div>
                             <div class="col-lg-2 d-none d-lg-block">
                                 {% if request.user.is_authenticated%}
-                                <div class="apply-btn-area">
+                                <!-- <div class="apply-btn-area">
                                     <a href="#"  data-toggle="modal" data-target="#logoutModal" class="apply-now-btn">Log Out</a>
+                                </div> -->
+
+                                <div class="apply-btn-area">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                       Hi {{request.user.username}}
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- <button class="dropdown-item" type="button">Upadate your application</button> -->
+
+                                        <a href="{%url 'update_application'%}" class="btn btn-warning dropdown-item">Update your application</a>
+
+
+                                        <a style="color:red;" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" >Log Out</a>
+
+                                    </div>
                                 </div>
                                 {%else%}
 
@@ -179,6 +198,35 @@
                                         </li>
                                     </ul>
                                 </nav>
+                            </div>
+                            div class="col-lg-2 d-none d-lg-block">
+                            {% if request.user.is_authenticated%}
+                            <!-- <div class="apply-btn-area">
+                                                                <a href="#"  data-toggle="modal" data-target="#logoutModal" class="apply-now-btn">Log Out</a>
+                                                            </div> -->
+
+                            <div class="apply-btn-area">
+                                <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Hi {{request.user.username}}
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- <button class="dropdown-item" type="button">Upadate your application</button> -->
+
+                                    <a href="{%url 'update_application'%}" class="btn btn-warning dropdown-item">Update your application</a>
+
+
+                                    <a style="color:red;" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Log Out</a>
+
+                                </div>
+                            </div>
+                            {%else%}
+
+                            <div class="apply-btn-area">
+                                <a href="#" data-toggle="modal" data-target="#LoginModal" class="apply-now-btn">Log In</a>
+                            </div>
+
+                            {%endif%}
                             </div>
                         </div>
                     </div>
@@ -295,6 +343,8 @@
     <!-- Plugins js -->
     <script src="{%static 'js/plugins.js'%}" type="text/javascript"></script>
     <!-- Bootstrap js -->
+        <script src="{%static 'js/bootstrap.bundle.min.js'%}" type="text/javascript"></script>
+
     <script src="{%static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
     <!-- WOW JS -->
     <script src="{%static 'js/wow.min.js'%}"></script>
@@ -345,9 +395,6 @@
                                     data-error="Email field is required" required="">
                                 <div class="help-block with-errors"></div>
                             </div>
-
-
-
                     </div>
                     <div class="modal-footer">
 

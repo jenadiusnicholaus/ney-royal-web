@@ -453,7 +453,6 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    {%if application_course_counter < 0 and application.file is None %}
                     <form action="{% url 'appy_course'%}" method="post" enctype ="multipart/form-data">
                         {% csrf_token %}
                         <div class="modal-header">
@@ -482,9 +481,6 @@
                             <button type="submit" onclick=spinner() ata-dismiss="modal" class="btn btn-warning">Apply</button>
                         </div>
                     </form>
-                    {%else%}
-                    <a href = "{%url 'update_application'%}" class ="btn btn-warning">Update your application</a>
-                    {%endif%}
                 </div>
             </div>
         </div>
