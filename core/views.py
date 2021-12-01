@@ -128,9 +128,10 @@ def events(request):
     return render(request, 'events.html', context=context)
 
 
-def course_details(request):
+def course_details(request, pk):
+    course = Course.objects.get(pk=pk)
     context = {
-
+        'course': course
     }
     return render(request, 'course_details.html', context=context)
 

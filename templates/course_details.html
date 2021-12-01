@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {%load static %}
 {% block contents%}
+{% load course_tags %}
 <br>
 <div class="inner-page-banner-area mt-5" style="background-image: url('/static/img/banner1.jpg');">
         <div class="container mt-5">
@@ -21,42 +22,18 @@
         <div class="row">
             <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
                 <div class="course-details-inner">
-                    <h2 class="title-default-left title-bar-high">UI-UX Web Design & Graphic Design</h2>
-                    <p>Bimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer.</p>
-                    <img src="img/course/20.jpg" class="img-responsive" alt="course">
+                    <h2 class="title-default-left title-bar-high">{{course.title}}</h2>
+                    <p>{{course.description}}.</p>
+                    <img src="{{course.image.url}}" class="img-responsive" alt="course">
                     <div class="course-details-tab-area">
                         <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                <ul class="course-details-tab-btn nav" id="myTab" role="tablist">
-                                    <li class="menu-item" role="presentation"><a class="menu-link active"
-                                            id="menu-1-tab" data-bs-toggle="tab" href="#menu-1" role="tab"
-                                            aria-controls="menu-1" aria-selected="false">Description</a></li>
-                                    <li class="menu-item" role="presentation"><a class="menu-link" id="menu-2-tab"
-                                            data-bs-toggle="tab" href="#menu-2" role="tab" aria-controls="menu-2"
-                                            aria-selected="false">Curriculum</a></li>
-                                    <li class="menu-item" role="presentation"><a class="menu-link" id="menu-3-tab"
-                                            data-bs-toggle="tab" href="#menu-3" role="tab" aria-controls="menu-3"
-                                            aria-selected="false">Lecturer</a></li>
-                                    <li class="menu-item" role="presentation"><a class="menu-link" id="menu-4-tab"
-                                            data-bs-toggle="tab" href="#menu-4" role="tab" aria-controls="menu-4"
-                                            aria-selected="false">Reviews</a></li>
-                                </ul>
-                            </div>
+
                             <div class="col-xl-12 col-lg-12 col-md-12">
                                 <div class="tab-content">
                                     <div class="tab-pane tab-item animated fadeIn show active" id="menu-1"
                                         role="tabpanel" aria-labelledby="menu-1-tab">
-                                        <h3 class="sidebar-title">Course Description</h3>
-                                        <p>Dmply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                            been the industry's standard dummy text ever since the 1500s, when an
-                                            unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book. It has survived not only five centuries.</p>
-                                        <h3 class="sidebar-title">Certification</h3>
-                                        <p>Dmply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                            been the industry's standard dummy text ever since the 1500s, when an
-                                            unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book. It has survived not only five centuries.</p>
+
+
                                         <h3 class="sidebar-title">Learning Outcomes</h3>
                                         <ul class="learning-outcomes">
                                             <li>Over 37 lectures and 55.5 hours of content!</li>
@@ -494,101 +471,20 @@
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
                 <div class="sidebar">
                     <div class="sidebar-box">
+
                         <div class="sidebar-box-inner">
                             <div class="sidebar-course-price">
-                                <a href="#" class="enroll-btn">Enroll THis Course</a>
+                                {% isApplied course.id request.user as is_applied %}
+                                {%if is_applied and request.user.is_authenticated %}
+                                <a href="#" class="enroll-btn">Already Enrolled </a>
+                                {%else%}
+                                <a href="#" class="enroll-btn">Enroll in tthis course </a>
+                                {%endif%}
                             </div>
                         </div>
                     </div>
-                    <div class="sidebar-box">
-                        <div class="sidebar-box-inner">
-                            <h3 class="sidebar-title">Course Reviews</h3>
-                            <div class="sidebar-course-reviews">
-                                <h4>Average Rating<span>4.8</span></h4>
-                                <ul>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                                </ul>
-                                <div class="skill-area">
-                                    <div class="progress">
-                                        <div class="lead">5 Stars </div>
-                                        <div data-wow-delay="1.2s" data-wow-duration="1.5s"
-                                            style="width: 100%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;"
-                                            data-progress="100%" class="progress-bar wow fadeInLeft  animated"></div>
-                                        <span>10</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="lead">4 Stars</div>
-                                        <div data-wow-delay="1.2s" data-wow-duration="1.5s"
-                                            style="width: 80%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;"
-                                            data-progress="80%" class="progress-bar wow fadeInLeft  animated"></div>
-                                        <span>6</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="lead">3 Stars</div>
-                                        <div data-wow-delay="1.2s" data-wow-duration="1.5s"
-                                            style="width: 60%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;"
-                                            data-progress="60%" class="progress-bar wow fadeInLeft  animated"></div>
-                                        <span>3</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="lead">2 Stars</div>
-                                        <div data-wow-delay="1.2s" data-wow-duration="1.5s"
-                                            style="width: 0%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;"
-                                            data-progress="0%" class="progress-bar wow fadeInLeft  animated"></div>
-                                        <span>0</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="lead">1 Stars</div>
-                                        <div data-wow-delay="1.2s" data-wow-duration="1.5s"
-                                            style="width: 0%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;"
-                                            data-progress="0%" class="progress-bar wow fadeInLeft  animated"></div>
-                                        <span>0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-box">
-                        <div class="sidebar-box-inner">
-                            <h3 class="sidebar-title">Asked Any Question?</h3>
-                            <div class="sidebar-question-form">
-                                <form id="question-form">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Name*" class="form-control" name="name"
-                                                id="form-name" data-error="Name field is required" required>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" placeholder="Email*" class="form-control" name="email"
-                                                id="form-email" data-error="Email field is required" required>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea placeholder="Message*" class="textarea form-control"
-                                                name="message" id="sidebar-form-message" rows="3" cols="20"
-                                                data-error="Message field is required" required></textarea>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="default-full-width-btn">Send</button>
-                                        </div>
-                                        <div class='form-response'></div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-box">
-                        <div class="sidebar-add-area overlay-primaryColor">
-                            <img src="img/banner/7.jpg" class="img-responsive" alt="banner">
-                            <a href="#" class="sidebar-ghost-btn">Apply Now!</a>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </div>
