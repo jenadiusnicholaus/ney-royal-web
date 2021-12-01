@@ -11,7 +11,8 @@ urlpatterns = [
     path('event_details/<pk>', views.event_details, name='event_details'),
     path('appy_course', views.appy_course, name="appy_course"),
     path('update_application', views.UpdateAppliction.as_view(),
-         name="update_application")
+         name="update_application"),
+    path("contact_msg/", views.contact_msg, name="contact_msg")
 
 
 ]

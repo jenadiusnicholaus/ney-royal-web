@@ -146,6 +146,18 @@ def event_details(request, pk):
     return render(request, 'event_details.html', context=context)
 
 
+def contact_msg(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        msg = request.POST.get('message')
+        cont_msg = Messages(name=name, email=email, message=msg)
+        cont_msg.save()
+        messages.success(
+            request, f'Thanks for reaching out')
+        return redirect('contact_us')
+
+
 def appy_course(request):
     if request.user.is_authenticated:
         if request.method == 'POST':

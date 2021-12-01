@@ -59,12 +59,13 @@
                 </div>
                 <div class="row">
                     <div style ="width: 100%;" class="contact-form1">
-                        <form class="form">
+                        <form action="{% url 'contact_msg' %}" class="form" method ="post">
+                            {%csrf_token%}
                             <fieldset>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Name*" class="form-control" name="name"
-                                            id="form-name" data-error="Name field is required" required>
+                                        <input type="text" placeholder="Full Name*" class="form-control" name="name"
+                                            id="form-name"  data-error="Name field is required" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
