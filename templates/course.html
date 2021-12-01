@@ -315,7 +315,7 @@
                                                 <a href="#"><i class="fa fa-link" aria-hidden="true"></i></a>
                                             </div>
                                             <div class="courses-content-wrapper">
-                                                <h3 class="item-title"><a href="#">{{course.title}}</a></h3>
+                                                <h3 class="item-title"><a href="{% url 'course_details' course.id %}">{{course.title}}</a></h3>
                                                 <p class="item-content">{{course.description}}</p>
                                                 <ul class="courses-info">
                                                     <!-- <li>1 Year
