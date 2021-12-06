@@ -39,7 +39,12 @@
                         <h3>File</h3>
                         {% for myfile in user_appliction %}
                         {%if  myfile.file %}
-                        <p><a href="{{ myfile.file.url }}"><i class="fas fa-file"></i>Click here to view</a></p>
+                        <a href="{{ myfile.file.url }}">
+                            <img width = 200 height = 200 src="{% static 'img/pdf2.png'%}" alt=" cover letter">
+                        </a>
+
+                        <p>
+                          </p>
                         {% else %}
                           <p><a href="#"><i class="fas fa-file"></i>Add you cover letter</a></p>
                         {% endif %}
