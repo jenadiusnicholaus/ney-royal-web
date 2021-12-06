@@ -21,15 +21,20 @@
 <form action ='', method ="POST" enctype="multipart/form-data">
     {% csrf_token %}
         <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-            <div class="contact-us-info1">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 ">
+            <div class="contact-us-info1 pr-2  ">
                 <ul>
+                    <li >
+                        <img style="width: 200px; height: 200px; border-radius:100%;" src =" {{profile_form.instance.image.url}}"/>
+                    </li>
                     <li>
                         <!-- <i class="fa fa-edit" aria-hidden="true"></i> -->
                         <h3>Course You Applied are </h3>
                         <ul class="contact-social">
                             {%for course in application.courses.all %}
                                 <span class="badge badge-pill badge-warning">{{course.course.title}}</span>
+
+
                             {%endfor%}
                         </ul>
 
@@ -62,7 +67,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">User name</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">User name</label>
                             <div class="col-sm-10">
                                 {{user_form.username}}
                             </div>
@@ -71,7 +76,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">Email</label>
                             <div class="col-sm-10">
                                 {{user_form.email}}
                             </div>
@@ -80,7 +85,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">First name</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">First name</label>
                             <div class="col-sm-10">
                                 {{user_form.first_name}}
                             </div>
@@ -89,7 +94,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Last name</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">Last name</label>
                             <div class="col-sm-10">
                                 {{user_form.last_name}}
                             </div>
@@ -98,7 +103,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Location</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">Location</label>
                             <div class="col-sm-10">
                                 {{profile_form.location}}
                             </div>
@@ -106,7 +111,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Phone Number</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">Phone Number</label>
                             <div class="col-sm-10">
                                 {{profile_form.mobile}}
                             </div>
@@ -114,7 +119,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">District</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">District</label>
                             <div class="col-sm-10">
                                 {{profile_form.district}}
                             </div>
@@ -123,7 +128,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">ward</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">ward</label>
                             <div class="col-sm-10">
                                 {{profile_form.ward}}
                             </div>
@@ -132,7 +137,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Profile pic</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">Profile pic</label>
                             <div class="col-sm-10">
                                 {{profile_form.image}}
                             </div>
@@ -140,7 +145,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Region</label>
+                            <label for="staticEmail" class="col-md-12 col-form-label">Region</label>
                             <div class="col-sm-10">
                                 {{profile_form.region}}
                             </div>
