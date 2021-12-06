@@ -334,8 +334,8 @@
                                                     {% isApplied course.id request.user as is_applied %}
                                                     {%if is_applied and request.user.is_authenticated %}
 
-                                                    <a type="button" class="btn btn-warning ">YouApplied for this course <i
-                                                            style="background-color: green; border-radius:100%; width: 20px; height: 20px; color:white;"
+                                                    <a type="button" class="btn btn-warning ">You Applied for this course
+                                                        <i style="background-color: green; border-radius:100%; width: 20px; height: 20px; color:white;"
                                                             class="fa fa-check"></i></a>
                                                     {%else%}
                                                     <button type="submit" class="btn btn-warning courses-fee">Apply</button>

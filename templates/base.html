@@ -196,38 +196,13 @@
                                         <li><a href="{% url 'contact_us' %}">Contact us</a>
 
                                         </li>
+                                        <li>
+
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="col-lg-2 d-none d-lg-block">
-                            {% if request.user.is_authenticated%}
-                            <!-- <div class="apply-btn-area">
-                                                                <a href="#"  data-toggle="modal" data-target="#logoutModal" class="apply-now-btn">Log Out</a>
-                                                            </div> -->
 
-                            <div class="apply-btn-area">
-                                <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Hi {{request.user.username}}
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- <button class="dropdown-item" type="button">Upadate your application</button> -->
-
-                                    <a href="{%url 'update_application'%}" class="btn btn-warning dropdown-item">Update your application</a>
-
-
-                                    <a style="color:red;" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Log Out</a>
-
-                                </div>
-                            </div>
-                            {%else%}
-
-                            <div class="apply-btn-area">
-                                <a href="#" data-toggle="modal" data-target="#LoginModal" class="apply-now-btn">Log In</a>
-                            </div>
-
-                            {%endif%}
-                            </div>
                         </div>
                     </div>
                 </div>
